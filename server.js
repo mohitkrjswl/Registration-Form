@@ -33,7 +33,7 @@ app.post('/empdata', async (req, res) => {
         cpassword: req.body.cpassword,
       });
       const postData = await empData.save();
-      res.send(postData)
+      res.redirect('/success')
     } else {
       res.send("Password didn't matched")
     }
@@ -41,6 +41,10 @@ app.post('/empdata', async (req, res) => {
   } catch (error) {
     res.send({ error: 'not saved' });
   }
+})
+
+app.get('/success', (re, res) => {
+  res.render('success');
 })
 app.listen(port, () => {
   console.log(`listening to the port ${port}`);
